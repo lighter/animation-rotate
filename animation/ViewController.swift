@@ -10,30 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let container = UIView()
-    let redSquare = UIView()
-    let blueSquare = UIView()
+    let fish = UIImageView()
 
     let button = UIButton.buttonWithType(UIButtonType.System) as UIButton
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // set container frame add to the screen
-        self.container.frame = CGRect(x: 60, y: 60, width: 200, height: 200)
-        self.view.addSubview(container)
-
-        // set red square frame up
-        // we want the blue square to have the same position as redSquare
-        // so lets just reuse blueSquare.frame
-        self.redSquare.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        self.blueSquare.frame = redSquare.frame
-
-        // set background colors
-        self.redSquare.backgroundColor = UIColor.redColor()
-        self.blueSquare.backgroundColor = UIColor.blueColor()
-
-        self.container.addSubview(self.redSquare)
+        self.fish.image = UIImage(named: "fish.jpeg")
+        self.fish.frame = CGRect(x: 50, y: 50, width:50, height: 50)
+        self.view.addSubview(self.fish)
 
         // set button frame
         self.setButton()
@@ -65,30 +51,36 @@ class ViewController: UIViewController {
     func animationClick(sender:UIButton!) {
         print("click")
 
-        // create a 'tuple' (a pair of more of objects assigned to a sing)
-        var views = (frontView: self.redSquare, backView: self.blueSquare)
+        // angles in iOS are measured as radians PI is 180 degrees so PI × 2 is 360 degrees
+        let fullRotation = CGFloat(M_PI * 2)
 
-        if(self.redSquare.isDescendantOfView(self.view)) {
-            views = (frontView:self.redSquare, backView: self.blueSquare)
-        }
-        else {
-            views = (frontView:self.blueSquare, backView: self.redSquare)
-        }
+        let duration = 2.0
+        let delay = 0.0
+        let options = UIViewKeyframeAnimationOptions.CalculationModeLinear
 
-        // set a transition style
-        let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
+        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
+            // each keyframe needs to be added here
+            // within each keyframe the relativeStartTime and relativeDuration need to be values between 0.0 and 1.0
 
-        UIView.transitionWithView(self.container, duration: 1.0, options: transitionOptions, animations: {
-            // remove the front object...
-            views.frontView.removeFromSuperview()
+            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/3, animations: {
+                // start at 0.00s (5s × 0)
+                // duration 1.67s (5s × 1/3)
+                // end at   1.67s (0.00s + 1.67s)
+                self.fish.transform = CGAffineTransformMakeRotation(1/3 * fullRotation)
+            })
+            UIView.addKeyframeWithRelativeStartTime(1/3, relativeDuration: 1/3, animations: {
+                self.fish.transform = CGAffineTransformMakeRotation(2/3 * fullRotation)
+            })
+            UIView.addKeyframeWithRelativeStartTime(2/3, relativeDuration: 1/3, animations: {
+                self.fish.transform = CGAffineTransformMakeRotation(3/3 * fullRotation)
+            })
 
-            // ... and add the other object
-            self.container.addSubview(views.backView)
+            }, completion: {finished in
+            // any code entered here will be applied
+            // once the animation has completed
+    
+            })
 
-            }, completion: { finished in
-                // any code entered here will be applied
-                // .once the animation has completed
-        })
     }
 
 

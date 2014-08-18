@@ -12,6 +12,7 @@
 		ECFA3F3A19A157CC00C70813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECFA3F3819A157CC00C70813 /* Main.storyboard */; };
 		ECFA3F3C19A157CC00C70813 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECFA3F3B19A157CC00C70813 /* Images.xcassets */; };
 		ECFA3F4819A157CD00C70813 /* animationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFA3F4719A157CD00C70813 /* animationTests.swift */; };
+		ECFA3F5319A169D500C70813 /* fish.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = ECFA3F5219A169D500C70813 /* fish.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		ECFA3F4119A157CC00C70813 /* animationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = animationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECFA3F4619A157CC00C70813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECFA3F4719A157CD00C70813 /* animationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationTests.swift; sourceTree = "<group>"; };
+		ECFA3F5219A169D500C70813 /* fish.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fish.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		ECFA3F2619A157CC00C70813 = {
 			isa = PBXGroup;
 			children = (
+				ECFA3F5119A169C300C70813 /* image */,
 				ECFA3F3119A157CC00C70813 /* animation */,
 				ECFA3F4419A157CC00C70813 /* animationTests */,
 				ECFA3F3019A157CC00C70813 /* Products */,
@@ -107,6 +110,14 @@
 				ECFA3F4619A157CC00C70813 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECFA3F5119A169C300C70813 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				ECFA3F5219A169D500C70813 /* fish.jpeg */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFA3F5319A169D500C70813 /* fish.jpeg in Resources */,
 				ECFA3F3A19A157CC00C70813 /* Main.storyboard in Resources */,
 				ECFA3F3C19A157CC00C70813 /* Images.xcassets in Resources */,
 			);
