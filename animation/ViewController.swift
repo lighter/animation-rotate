@@ -10,16 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let fish = UIImageView()
-
     let button = UIButton.buttonWithType(UIButtonType.System) as UIButton
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.fish.image = UIImage(named: "fish.jpeg")
-        self.fish.frame = CGRect(x: 50, y: 50, width:50, height: 50)
-        self.view.addSubview(self.fish)
 
         // set button frame
         self.setButton()
@@ -51,36 +45,25 @@ class ViewController: UIViewController {
     func animationClick(sender:UIButton!) {
         print("click")
 
-        // angles in iOS are measured as radians PI is 180 degrees so PI × 2 is 360 degrees
-        let fullRotation = CGFloat(M_PI * 2)
+        let square = UIView()
+        square.frame = CGRect(x: 55, y: 300, width: 20, height: 20)
+        square.backgroundColor = UIColor.redColor()
 
-        let duration = 2.0
-        let delay = 0.0
-        //let options = UIViewKeyframeAnimationOptions.CalculationModeLinear
-        let options = UIViewKeyframeAnimationOptions.CalculationModePaced
+        self.view.addSubview(square)
 
-        UIView.animateKeyframesWithDuration(duration, delay: delay, options: options, animations: {
-            // each keyframe needs to be added here
-            // within each keyframe the relativeStartTime and relativeDuration need to be values between 0.0 and 1.0
+        let path = UIBezierPath()
 
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0, animations: {
-                // start at 0.00s (5s × 0)
-                // duration 1.67s (5s × 1/3)
-                // end at   1.67s (0.00s + 1.67s)
-                self.fish.transform = CGAffineTransformMakeRotation(1/3 * fullRotation)
-            })
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0, animations: {
-                self.fish.transform = CGAffineTransformMakeRotation(2/3 * fullRotation)
-            })
-            UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0, animations: {
-                self.fish.transform = CGAffineTransformMakeRotation(3/3 * fullRotation)
-            })
+        path.moveToPoint(CGPoint(x: 16, y: 239))
+        path.addCurveToPoint(CGPoint(x: 301, y: 239), controlPoint1: CGPoint(x: 136, y: 373), controlPoint2: CGPoint(x: 178, y: 110))
 
-            }, completion: {finished in
-            // any code entered here will be applied
-            // once the animation has completed
-    
-            })
+        let anim = CAKeyframeAnimation(keyPath: "position")
+
+        anim.path = path.CGPath
+        anim.rotationMode = kCAAnimationRotateAuto
+        anim.repeatCount = Float.infinity
+        anim.duration = 5.0
+
+        square.layer.addAnimation(anim, forKey: "animate position along path")
 
     }
 
